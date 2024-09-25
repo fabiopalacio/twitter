@@ -9,7 +9,11 @@
         {% include "authors/partials/card.html" %}
     {% endfor %}
 {% else %}
-Não temos tweets
+       <div class="row">
+            <div class="col-6 col-sm-6 text-center mx-auto card-text-color border border-warning p-2 m-2 ">
+                <span>Nenhum tweet encontrado...</span>
+            </div>
+        </div>
 {% endif %}
 </div>
 {% endblock content %}
