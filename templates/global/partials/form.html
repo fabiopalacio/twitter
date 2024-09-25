@@ -1,0 +1,41 @@
+<div class="main-content container p-2 rounded text-center  ">
+    <div class="row mb-3">
+        {% if title %}
+            <h3 class="card-text-color">{{title}}</h3>
+        {% endif %}
+    </div>
+
+
+    <form class="container m-auto d-flex flex-column gap-2 align-items-center card-text-color" action="{{form_action}}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div data-mdb-input-init class="row  text-center mx-2">
+            <label class="d-none" for="{{field.id_for_label}}">{{field.label}}</label>
+            {{field}}
+        </div>
+        
+        {% for error in field.errors %}
+            <div class="row">
+                <div class="font-small form-error text-center m-auto">
+                    {{error}}
+                </div>
+            </div>
+                {%empty%}
+                {% if field.help_text %}
+                    <p class='small'>{{field.help_text}}</p>
+                {% endif %}
+                {% endfor %}
+
+
+            {% endfor %}
+
+
+        <div class="form-content form-content-grid">
+            <div class="form-group">
+                <button class="btn btn-success mt-1" type="submit">{{ btn_text}}</button>
+            </div>
+        </div>
+
+    </form>
+</div>

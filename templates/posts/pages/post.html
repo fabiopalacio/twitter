@@ -1,0 +1,14 @@
+{% extends "global/partials/base.html" %}
+{% block content %}
+<div class="container mt-5">
+
+    {% include "authors/partials/card.html" with disabled=True %}
+    {% for comment in comments %}
+    {% include "posts/partials/comment-card.html" %}
+    {% endfor %}
+    {% include "global/partials/form.html" %}
+</div>
+{% endblock content %}
+
+
+

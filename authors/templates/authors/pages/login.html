@@ -1,0 +1,21 @@
+{% extends "global/partials/base.html" %}
+
+{% block content %}
+
+    <div class="container d-flex flex-column gap-2 justify-content-center">
+
+        {% if user.username %}
+            Você está logado como {{user.username}}
+
+        {% else %}
+            <div class="container d-flex flex-column gap-2 justify-content-center align-items-center mt-5">
+
+                {% include "global/partials/form.html" with title="Login" %}
+
+                <a class="border border-success btn btn-primary" href="{% url "authors:register" %}">Não possui uma conta?</a>
+            </div>
+        {% endif %}
+    </div>
+    
+    
+{% endblock content %}

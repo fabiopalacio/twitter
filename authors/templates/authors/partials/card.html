@@ -1,0 +1,33 @@
+<div 
+    class="container mb-4  p-2 rounded  card-border 
+    {% if not disabled %}bg-card  pointer {% else %} bg-card-disabled{% endif %}"
+    {% if not disabled %}onclick="window.location.href='{% url 'posts:post' tweet.id %}';"{% endif %}
+>
+    <div class="row card-text-color">
+        <div class="col-10 col-sm-10">
+                <p class="mb-0"><span {% if disabled %}onclick="window.location.href='{% url 'authors:profile' tweet.author.id %}';" class="pointer profile-link"{%endif%} >@<strong>{{ tweet.author.author.username }}</strong></span></p>
+                <p><small class="text-secondary text-gray font-small">{{ tweet.created_at|date:"M d, Y, h:i a" }}</small> </p>
+        </div>
+        <div class="col-2 col-sm-2 ">
+            {% if tweet.author.author == request.user %}
+                <form class="position-relative" method="POST" action="{% url 'posts:delete' tweet.id %}">
+                    {% csrf_token %}
+                    <button class="btn btn-danger d-flex justify-content-center align-items-center right-align" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                        </svg>
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-sm-12 d-flex flex-wrap">
+            <p class="card-text-color">{{ tweet.content }}</p>
+        </div>
+
+    </div>
+</div>
+

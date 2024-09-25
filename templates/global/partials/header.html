@@ -1,0 +1,41 @@
+
+
+<header class=' mb-1 px-3'>
+    <div class="row center-items p-1">
+        <div class="col-12 col-sm-4 text-center mt-2">
+            <h1><a id="logo" href="{% url "home" %}">Twitter</a></h1>
+        </div>
+        <div class="col-8 col-sm-4 col-md-6">
+            <form action="{% url "authors:search" %}" method="POST" class="form-group d-flex justify-content-between">
+            {% csrf_token %}
+            <input type="text" placeholder="Buscar usuário..." name="search_term" class="form-control w-100" >
+            <button class="btn-search" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </button>
+        </form>
+        </div>
+        <div class="col-4 col-sm-4 col-md-2 text-end p-1">
+            {% if user.is_authenticated %}
+            <div class="row">
+                <div class="col-6 col-sm-6 p-0 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-primary border border-primary p-1 rounded my-auto" href="{% url "authors:feed" %}">Feed</a>
+                </div>
+                <div class="col-6 col-sm-6 p-0 d-flex justify-content-center align-items-center">
+                <form class="form-group text-end m-1" action="{% url "authors:logout" %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="username" value="{{request.user.username}}">
+                    <button class="btn btn-danger p-1 border border-danger rounded " type="submit">Sair</button>
+                </form>
+                </div>
+            </div>
+                
+            {% else %}
+            <div class="card-text-color">
+                <a class="btn-log" href="{% url "authors:login" %}">Entre</a> ou    <a class="btn-log" href="{% url "authors:register" %}">Cadastre-se</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</header>

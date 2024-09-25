@@ -1,0 +1,41 @@
+{% extends "global/partials/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="d-flex justify-content-around my-4">
+        <h3 class="card-text-color">
+            {% if user.username == profile.author.username  %}
+                Seus tweets
+            {% else %}
+                Perfil de @{{profile.author.username}}
+            {% endif %}
+        </h3>
+
+        {% if logged %}
+            {% if user.username != profile.author.username %}
+                <form action="{{btn_action}}">
+                    {% csrf_token %}
+                    <button class="btn btn-primary" type="submit">{{btn_text}}</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <ul>
+        {% for tweet in tweets %}
+            {% include "authors/partials/card.html" %}
+            {%empty%}
+        <div class="row">
+            <div class="col-6 col-sm-6 text-center mx-auto card-text-color border border-warning p-2 m-2 ">
+                <span>Nenhum tweet encontrado...</span>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock content %}
+
+

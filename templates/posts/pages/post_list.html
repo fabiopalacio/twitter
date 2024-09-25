@@ -1,0 +1,15 @@
+{% extends "global/partials/base.html" %}
+{% block content %}
+<div class="container mt-5 bg-blue">
+{% if user.is_authenticated %}
+    {% include "global/partials/form.html" %}
+{% endif %}
+{% if tweets %}
+    {% for tweet in tweets %}
+        {% include "authors/partials/card.html" %}
+    {% endfor %}
+{% else %}
+Não temos tweets
+{% endif %}
+</div>
+{% endblock content %}

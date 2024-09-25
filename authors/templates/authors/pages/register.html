@@ -1,0 +1,11 @@
+{% extends "global/partials/base.html" %}
+
+{% block content %}
+
+    <div class="container d-flex flex-column gap-2 justify-content-center align-items-center mt-1">
+        
+        {% include "global/partials/form.html" with title='Cadastre-se' %}
+        <a class="border border-success btn btn-primary" href="{% url "authors:login" %}">Já possui uma conta?</a>
+    </div>
+
+{% endblock content %}

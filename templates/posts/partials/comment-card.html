@@ -1,0 +1,21 @@
+<div class="mx-3 mx-sm-5 mb-4 bg-card-comment p-2 rounded border border-primary">
+    <div class="row ">
+        <div class="col-10 col-sm-10">
+            <p class="mb-0 font-small">@<strong>{{ comment.author.author.username }}</strong></p>
+            
+            <p class="text-secondary text-gray font-small"><small class="text-secondary">{{ comment.created_at|date:"M d, Y, h:i a" }}</small> </p>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12">
+
+            <p class="text-dark">{{ comment.content }}</p>
+        </div>
+    </div>
+
+    
+
+    
+
+</div>
